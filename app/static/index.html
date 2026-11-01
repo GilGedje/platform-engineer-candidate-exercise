@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f6f4ed">
+    <meta name="description" content="A simple place to write and keep your notes.">
+    <title>Notes Lab</title>
+    <link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="/static/app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#note-text">Skip to writing a note</a>
+    <div class="notebook">
+      <header class="page-header">
+        <a class="wordmark" href="/" aria-label="Notes Lab home"><span class="brand-mark" aria-hidden="true">n.</span> Notes Lab</a>
+        <p>A little space to remember.</p>
+      </header>
+      <main class="workspace">
+        <section class="composer" aria-labelledby="write-heading">
+          <span class="eyebrow">MAKE A NOTE</span>
+          <h1 id="write-heading">Keep a thought.</h1>
+          <p class="intro">An idea, a reminder, something for later.<br>Write it down and make a little room.</p>
+          <form id="note-form">
+            <label for="note-text">Your note</label>
+            <textarea id="note-text" name="text" rows="7" maxlength="2000" placeholder="What would you like to remember?" aria-describedby="note-limit" dir="auto"></textarea>
+            <div class="form-meta"><span id="note-limit">Up to 2,000 characters</span><span id="character-count" aria-hidden="true">0 / 2,000</span></div>
+            <button class="save-button" id="save-button" type="submit" disabled><span id="save-label">Save note</span><span aria-hidden="true">↗</span></button>
+            <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </section>
+        <section class="saved-notes" aria-labelledby="saved-heading">
+          <div class="list-header">
+            <div><span class="eyebrow">YOUR NOTEBOOK</span><h2 id="saved-heading">Saved notes <span id="note-count" class="note-count"></span></h2></div>
+            <button id="refresh-button" class="refresh-button" type="button" aria-label="Refresh saved notes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M20 7v5h-5M4 17v-5h5"/><path d="M6.2 6.2A8 8 0 0 1 20 12M4 12a8 8 0 0 0 13.8 5.8"/></svg><span>Refresh</span></button>
+          </div>
+          <p id="list-status" class="list-status" role="status" aria-live="polite">Loading your notes…</p>
+          <div id="empty-state" class="empty-state" hidden><span class="empty-rule" aria-hidden="true"></span><h3>Your first note starts here.</h3><p>Write a note and select Save note.<br>It will be waiting here when you return.</p></div>
+          <ol id="notes-list" class="notes-list" aria-label="Saved notes"></ol>
+          <p class="list-footer">Small thoughts. Safely kept.</p>
+        </section>
+      </main>
+      <footer class="page-footer"><span>Notes Lab</span><span>One thought at a time.</span></footer>
+    </div>
+    <noscript><p class="noscript">Please enable JavaScript to write and read notes.</p></noscript>
+  </body>
+</html>

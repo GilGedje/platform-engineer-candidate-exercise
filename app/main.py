@@ -10,6 +10,8 @@ import threading
 import time
 
 from fastapi import FastAPI, HTTPException, Request, Response
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 import psycopg
 from psycopg.rows import dict_row
@@ -53,6 +55,8 @@ async def lifespan(application: FastAPI):
 
 
 app = FastAPI(title="Notes Lab", version="1.0.0", lifespan=lifespan)
+STATIC_DIR = Path(__file__).parent / "static"
+app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
 
 @app.middleware("http")
@@ -68,6 +72,8 @@ async def observe_requests(request: Request, call_next):
     finally:
         # Route templates bound label cardinality; never label using note IDs or user input.
         route = getattr(request.scope.get("route"), "path", "unmatched")
+        if request.url.path.startswith("/static/"):
+            route = "/static"
         REQUESTS.labels(request.method, route, str(status)).inc()
         DURATION.labels(request.method, route).observe(time.perf_counter() - started)
 
@@ -105,6 +111,11 @@ def database():
 
 class NewNote(BaseModel):
     text: str = Field(min_length=1, max_length=2000)
+
+
+@app.get("/", include_in_schema=False)
+def homepage():
+    return FileResponse(STATIC_DIR / "index.html")
 
 
 @app.get("/livez")

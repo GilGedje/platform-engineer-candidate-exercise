@@ -13,6 +13,7 @@ We assess how you learn, gather evidence, explain decisions, and verify your wor
 ## What you receive
 
 - A complete FastAPI application, Dockerfile, and pinned Python dependencies.
+- A simple notes webpage at `/` for writing and reading notes, served by the same application container. The frontend is already supplied; no frontend development or build tool is required.
 - An application contract and acceptance criteria below.
 - No Kubernetes manifests or Helm chart. You will create these.
 
@@ -97,8 +98,12 @@ Supply this variable through your Helm chart's runtime configuration. Keep it ou
 
 The app creates its notes table automatically on the first successful database operation, including readiness checks. The database user needs permission to create that table. The application logs to standard output/error and does not log note contents or credentials. The startup record is local process metadata; notes are stored only in PostgreSQL.
 
+Open `/` to use the notes webpage. Saving submits to the existing `POST /notes` endpoint; loading or refreshing the list reads `GET /notes`. Notes are stored in PostgreSQL, and the page confirms a save after the API succeeds. The browser does not store the notes in local storage. You may use the webpage or direct API calls to demonstrate the required persistence and recovery checks.
+
 | Method and endpoint | Behavior |
 |---|---|
+| `GET /` | Notes webpage with a text box, Save note button, and saved notes list |
+| `GET /static/{asset}` | Bundled frontend stylesheet, JavaScript, and favicon |
 | `GET /livez` | `200` while the application can serve requests; independent of PostgreSQL |
 | `GET /readyz` | `200` when database access works; `503` on database failure |
 | `GET /version` | `200`, e.g. `{"build":"starter","environment":"local"}` |
@@ -118,6 +123,8 @@ The supplied metrics are:
 - Standard Python/process metrics
 
 Health checks, metrics scrapes, and API documentation requests are excluded from the application HTTP counter and duration histogram. Dynamic note URLs use the route template `/notes/{note_id}` as their metric label.
+
+The HTTP metrics include webpage/asset requests as well as API traffic. Static asset paths share the bounded `/static` route label. Visiting and using the notes webpage therefore also generates observable application traffic.
 
 Example API calls once your local access is configured:
 
