@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+*.log
+kubeconfig*
+*.kubeconfig
+.kube/
+secrets*.yaml
+*.bundle
+.DS_Store
