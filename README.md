@@ -44,12 +44,12 @@ Notes are stored in PostgreSQL rather than browser local storage. Retaining the 
 
 Notes Lab runs on Python 3.12 with PostgreSQL 17. The application listens on port `8000` and requires `APP_ENV` at runtime. For a local deployment, use `APP_ENV=local`.
 
-The [application reference](axercise/06-application-reference.md) lists the full configuration, health endpoints, API, and metrics.
+The [application reference](exercise/06-application-reference.md) lists the full configuration, health endpoints, API, and metrics.
 
 ## Deployment exercise
 
 This repository is also the starter for a platform engineering deployment exercise. Its supplied Dockerfile contains runtime faults to investigate as part of the handover.
 
-The scenario, instructions, and submission details live in **[axercise/](axercise/README.md)**, split into short parts so you can work through one stage at a time.
+The scenario, instructions, and submission details live in **[exercise/](exercise/README.md)**, split into short parts so you can work through one stage at a time.
 
-**[Start the exercise →](axercise/README.md)**
+**[Start the exercise →](exercise/README.md)**
