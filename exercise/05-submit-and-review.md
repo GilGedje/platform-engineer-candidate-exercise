@@ -33,6 +33,8 @@ You may ask the interviewer clarifying questions. If you accidentally receive AI
 
 In the follow-up, you will explain your solution, reproduce selected checks, and investigate one small change or fault with the interviewer. We will ask how you reached conclusions and what you would investigate next when evidence is incomplete.
 
+Technical verification may use automated checks. Troubleshooting method, learning, build provenance, and handoff quality are reviewed by the interviewer. Inaccessible infrastructure or an unsupported verification method needs follow-up rather than an automatic assumption about your skills.
+
 ---
 
 [Exercise overview](README.md) · [Previous part](04-verify-recovery.md) · [Back to the app](../README.md)

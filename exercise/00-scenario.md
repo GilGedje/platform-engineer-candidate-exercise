@@ -25,6 +25,8 @@ Use an explicit image tag for your repaired application and explain how the clus
 
 Use one replica of PostgreSQL with a PVC. Use a maintained PostgreSQL 17 image and record the exact version. You may write the database resources yourself or use a pinned Helm dependency. You must author the application Helm chart. Monitoring may be a separate Helm release.
 
+Your cluster needs a usable storage class or a preallocated persistent volume with enough capacity for PostgreSQL. On a supplied cluster, confirm storage capacity, image access, and project permissions with the interviewer before starting. Record infrastructure blockers separately from your troubleshooting work.
+
 ---
 
 [Exercise overview](README.md) · [Next part](01-repair-the-image.md)

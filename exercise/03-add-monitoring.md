@@ -11,6 +11,8 @@
 
 Application metrics are required; generic Kubernetes dashboards alone do not satisfy this section. Alerting, logs aggregation, tracing, and PostgreSQL exporters are optional and are not needed for full marks.
 
+Choose charts that fit your cluster permissions. `kube-prometheus-stack` can require cluster-scoped resources and permissions; a namespace-scoped Prometheus and Grafana Helm deployment is also acceptable. The required application metrics and dashboard behavior are the same.
+
 Metric names and collection behavior are documented in the [application reference](06-application-reference.md#application-contract).
 
 ---
